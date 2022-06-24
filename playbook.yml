@@ -24,7 +24,12 @@
   roles:
     - common
     - docker
-    - helm
     - kubernetes
+
+- hosts: master
+  become: yes
+  roles:
+    - helm
+    - ingress-nginx
 
   tasks: []

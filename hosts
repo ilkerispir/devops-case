@@ -1,0 +1,9 @@
+[all]
+master                 ansible_host=192.168.33.71
+node                   ansible_host=192.168.33.72
+
+[master]
+master
+
+[node]
+node
