@@ -6,15 +6,10 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "1.0"
   config.vm.box_check_update = true
 
-  config.vm.provider "virtualbox" || "parallels" do |vm|
-    vm.cpus = 2
-    vm.memory = "2048"
-  end
-
   # Define three VMs with static private IP addresses.
   boxes = [
-    { :name => "master", :ip => "192.168.33.71" },
-    { :name => "node", :ip => "192.168.33.72" }
+    { :name => "master", :ip => "192.168.33.71", :cpus => 2,  :memory => 4096 },
+    { :name => "node",   :ip => "192.168.33.72", :cpus => 1,  :memory => 2048 }
   ]
 
   # Provision each of the VMs.
@@ -22,6 +17,11 @@ Vagrant.configure("2") do |config|
     config.vm.define opts[:name] do |config|
       config.vm.hostname = opts[:name]
       config.vm.network :private_network, ip: opts[:ip]
+
+      config.vm.provider "virtualbox" || "parallels" do |vm|
+        vm.cpus = opts[:cpus]
+        vm.memory = opts[:memory]
+      end
 
       # Provision all the VMs in parallel using Ansible after last VM is up.
       if opts[:name] == "node"
@@ -48,5 +48,4 @@ Vagrant.configure("2") do |config|
       end
     end
   end
-
 end
