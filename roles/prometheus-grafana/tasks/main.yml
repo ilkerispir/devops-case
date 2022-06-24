@@ -1,0 +1,50 @@
+---
+- name: Install prometheus stack
+  block:
+    - name: Render Prometheus values file for Helm
+      template:
+        src: prometheus-stack-values.yml.j2
+        dest: /tmp/prometheus-stack-values.yml
+
+    - name: Add prometheus stack chart repo
+      community.kubernetes.helm_repository:
+        name: prometheus-community
+        repo_url: https://prometheus-community.github.io/helm-charts
+
+    - name: Deploy prometheus stack
+      community.kubernetes.helm:
+        name: prom
+        chart_ref: prometheus-community/kube-prometheus-stack
+        chart_version: "{{ prometheus_stack.chart_version }}"
+        values_files:
+          - /tmp/prometheus-stack-values.yml
+        release_namespace: "{{ prometheus_stack.deployment.namespace }}"
+        create_namespace: true
+
+    - name: Wait prometheus stateful apps to init
+      shell:
+        cmd: |
+          kubectl rollout status statefulset {{ item }} -n {{ prometheus_stack.deployment.namespace }} --timeout=30s
+      with_items:
+        - alertmanager-prom-kube-prometheus-stack-alertmanager
+        - prometheus-prom-kube-prometheus-stack-prometheus
+      changed_when: false
+      register: rollout_status
+      until: rollout_status.rc == 0
+      retries: 30
+      delay: 10
+
+    - name: Wait prometheus deployment apps to init
+      shell:
+        cmd: |
+          kubectl rollout status deployment {{ item }} -n {{ prometheus_stack.deployment.namespace }}
+      with_items:
+        - prom-grafana
+        - prom-kube-prometheus-stack-operator
+        - prom-kube-state-metrics
+
+  always:
+    - name: Remove tmp file as it may contain secrets
+      file:
+        path: /tmp/prometheus-stack-values.yml
+        state: absent

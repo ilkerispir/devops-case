@@ -31,5 +31,6 @@
   roles:
     - helm
     - ingress-nginx
+    - prometheus-grafana
 
   tasks: []

@@ -18,7 +18,7 @@ vagrant destroy -f
 ### ToDo List
 - [ ] Flowchart(Excalidraw)
 - [x] K8s cluster
-- [ ] Monitoring system
+- [ ] Monitoring system (Prometheus & Grafana)
 - [ ] Alert thresholds(min 3 alert)
 - [ ] Redeploy & reconfig
 - [ ] Certs & expiration dates service
