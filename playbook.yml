@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+  vars:
+    kubernetes_allow_pods_on_master: true
+  roles:
+    - common
+    - docker
+    - kubernetes
+    - helm
