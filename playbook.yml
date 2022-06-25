@@ -30,6 +30,6 @@
   become: yes
   roles:
     - helm
-    - ingress-nginx
+    - deployment
 
   tasks: []
