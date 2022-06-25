@@ -1,3 +1,0 @@
----
-ingress_nginx:
-  chart_version: "4.0.18"

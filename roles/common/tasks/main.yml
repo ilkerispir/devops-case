@@ -24,6 +24,7 @@
       - jq
       - unzip
       - neofetch
+      - nfs-common
     state: present
     update_cache: true
 
