@@ -46,7 +46,7 @@ resource "azurerm_kubernetes_cluster" "changeme_simple_k8s" {
   }
 
   default_node_pool {
-    name       = "ilker-pool"
+    name       = "ilkerpool"
     node_count = 2
     vm_size    = "Standard_DS2_v2"
   }
