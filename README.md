@@ -22,6 +22,15 @@ vagrant halt
 ```bash
 vagrant destroy -f
 ```
+## Get KUBECONFIG
+```bash
+vagrant ssh master -c "sudo cat ~/.kube/config" > ~/.kube/hb-devops-case
+```
+
+## Export KUBECONFIG
+```bash
+export KUBECONFIG=~/.kube/hb-devops-case
+```
 
 ### API Endpoint - Test with curl or browser
 ```bash
