@@ -146,3 +146,6 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 
 * Best Practice Infrastructure Arch 
 ![best-practice-infra](./screenshots/best-practice-infra.png)
+
+* Multu Cloud & Region Arch
+![multi-cloud-region](./screenshots/multi-cloud-region.png)
