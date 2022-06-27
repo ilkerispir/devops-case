@@ -71,11 +71,11 @@ alertmanager:
         slack_configs:
 {% if prometheus_stack.deployment.slack == 'enable' %}
 {%- raw %}
-          - channel: 'tn-k8s-alerts'
+          - channel: 'k8s-alerts'
             api_url: https://hooks.slack.com/services/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
             username: '{{ template "slack.default.username" . }}'
             color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
-            title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification - Turknet'
+            title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Prometheus Event Notification'
             title_link: '{{ template "slack.default.titlelink" . }}'
             pretext: '{{ .CommonAnnotations.summary }}'
             text: |-
