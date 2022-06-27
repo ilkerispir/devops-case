@@ -1,0 +1,118 @@
+---
+commonLabels:
+  ilker-monitoring: ilker-prometheus-exporter
+
+prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - prometheus.{{ prometheus_stack.domain_name.suffix }}
+    tls:
+    - secretName: prometheus-cert
+      hosts:
+        - prometheus.{{ prometheus_stack.domain_name.suffix }}
+
+    resources:
+      requests:
+        cpu: "{{ prometheus_stack.prometheus.resources.requests.cpu }}"
+        memory: "{{ prometheus_stack.prometheus.resources.requests.memory }}"
+      limits:
+        cpu: "{{ prometheus_stack.prometheus.resources.limits.cpu }}"
+        memory: "{{ prometheus_stack.prometheus.resources.limits.memory }}"
+
+    securityContext:
+      runAsNonRoot: false
+      runAsUser: 0
+
+    ## How long to retain metrics
+    retention: 360d
+
+    serviceMonitorSelector:
+      matchLabels:
+        ilker-monitoring: ilker-prometheus-exporter
+
+    ruleSelector:
+      matchLabels:
+        ilker-monitoring: ilker-prometheus-exporter
+
+    additionalScrapeConfigs:
+
+alertmanager:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - alertmanager.{{ prometheus_stack.domain_name.suffix }}
+    tls:
+    - secretName: alertmanager-cert
+      hosts:
+        - alertmanager.{{ prometheus_stack.domain_name.suffix }}
+
+  config:
+    global:
+      resolve_timeout: 5m
+
+    route:
+      group_by: [alertname, app]
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: slack_receiver # this is the default channel
+      routes:
+        - match:
+            alertname: Watchdog
+          receiver: blackhole
+
+    receivers:
+      - name: blackhole
+      - name: silenced
+      - name: slack_receiver
+        slack_configs:
+
+grafana:
+  adminPassword: JGbGt9MjeNYcrn # TODO: retrieve this from Vault
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+    limits:
+      memory: 1000Mi
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.{{ prometheus_stack.domain_name.suffix }}
+    tls:
+    - secretName: grafana-cert
+      hosts:
+        - grafana.{{ prometheus_stack.domain_name.suffix }}
+
+nodeExporter:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 100Mi
+
+kubeApiServer:
+  enabled: true
+
+kubeControllerManager:
+  enabled: false
+
+kubeEtcd:
+  enabled: true
+
+kubeScheduler:
+  enabled: false
+
+kubeProxy:
+  enabled: false
+
+kubeDns:
+  enabled: false
+
+coreDns:
+  enabled: true

@@ -30,6 +30,7 @@
   become: yes
   roles:
     - helm
-    - deployment
+    - ingress-nginx
+    - prometheus-grafana
 
   tasks: []

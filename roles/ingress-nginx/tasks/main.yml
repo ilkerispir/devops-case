@@ -1,0 +1,26 @@
+---
+- name: Add nginx chart repo
+  community.kubernetes.helm_repository:
+    name: ingress-nginx
+    repo_url: https://kubernetes.github.io/ingress-nginx
+
+- name: Render values file
+  template:
+    dest: /tmp/nginx-ingress-values.yml
+    src: nginx-ingress-values.yml.j2
+
+- name: Install nginx-ingress
+  community.kubernetes.helm:
+    name: nginx
+    chart_ref: ingress-nginx/ingress-nginx
+    chart_version: "{{ ingress_nginx.chart_version }}"
+    values_files:
+      - /tmp/nginx-ingress-values.yml
+    release_namespace: platform
+    create_namespace: true
+    update_repo_cache: true
+
+- name: Wait until nginx-ingress is deployed
+  shell:
+    cmd: |
+      kubectl rollout status daemonset -n platform nginx-ingress-nginx-controller
