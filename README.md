@@ -65,3 +65,6 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 
 ### K8s Arch
 ![k8s-arch](./screenshots/k8s-cluster.png)
+
+### Monitoring & Alert
+![k8s-arch](./screenshots/k8s-monitoring.png)

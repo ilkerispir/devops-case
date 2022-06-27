@@ -1,23 +1,9 @@
 ---
-- name: Install Ingress Nginx with Helm 
-  command: "helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace"
-
 - name: Deploy k8s-cert-exp service
   command: "kubectl create deployment k8s-cert-exp --image ilkerispir/k8s-cert-exp"
-
-- name: Expose k8s-cert-exp service
-  command: "kubectl expose deployment k8s-cert-exp --type=NodePort --port=8080 --overrides '{ \"apiVersion\": \"v1\",\"spec\":{\"ports\": [{\"port\":8080,\"protocol\":\"TCP\",\"targetPort\":8080,\"nodePort\":30000}]}}'"
-
-- name: Deploy & Expose Kubernetes Dashboard
-  command: "kubectl apply -f https://raw.githubusercontent.com/justmeandopensource/kubernetes/master/dashboard/dashboard.yaml"
 
 - name: Create argocd namespace
   command: "kubectl create namespace argocd"
 
 - name: Install Argo CD
   command: "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
-
-- name: Expose Argo CD
-  command: "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\", \"ports\": [{\"port\":443,\"protocol\":\"TCP\",\"targetPort\":8080,\"nodePort\":31000}]}}'"
