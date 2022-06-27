@@ -133,6 +133,7 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 ![ansible](./screenshots/ansible.png)
 
 ### K8s Cert Exp Service
+![service-arch](./screenshots/service-arch.png)
 
 ### CI/CD
 
