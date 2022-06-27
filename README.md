@@ -76,6 +76,10 @@ curl https://argo-cd.ilkerispir.com/
 * CPU, RAM usage more than 80%
 * Pod, Node crashes for various reasons
 * Out of free space on the disk
+* APM Metrics
+  * Error rates
+  * Response Times
+  * Uptime
 
 ### Monitoring & Alert Arch
 ![k8s-monitoring](./screenshots/k8s-monitoring.png)
