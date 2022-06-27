@@ -4,6 +4,7 @@ prometheus_stack:
 
   deployment:
     namespace: monitoring
+    slack: enable
 
   domain_name:
     suffix: ilkerispir.com
