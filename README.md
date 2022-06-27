@@ -32,19 +32,24 @@ vagrant ssh master -c "sudo cat ~/.kube/config" > ~/.kube/hb-devops-case
 export KUBECONFIG=~/.kube/hb-devops-case
 ```
 
-### API Endpoint - Test with curl or browser
+### Cert Exp Service Endpoint
 ```bash
-curl http://192.168.33.71:30000/
+curl https://k8s-cert-exp.ilkerispir.com/
 ```
 
-### K8S Dashboard - Test with curl or browser
+### Grafana
 ```bash
-curl https://192.168.33.71:32323/
+curl https://grafana.ilkerispir.com/
 ```
 
-### Argo CD - Test with curl or browser
+### Prometheus
 ```bash
-curl https://192.168.33.71:31000/
+curl https://prometheus.ilkerispir.com/
+```
+
+### Argo CD
+```bash
+curl https://argo-cd.ilkerispir.com/
 ```
 
 ## Example Ansbile Command
