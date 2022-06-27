@@ -52,17 +52,12 @@ curl https://prometheus.ilkerispir.com/
 curl https://argo-cd.ilkerispir.com/
 ```
 
-## Example Ansbile Command
-```bash
-PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSIBLE_SSH_ARGS='-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s' ansible-playbook --connection=ssh --timeout=30 --user="vagrant" --limit="all" --inventory-file=./hosts --ask-pass --become -vvv ansible.yml
-```
-
 ## ToDo List
-- [ ] Flowchart(Excalidraw)
+- [x] Flowchart(Excalidraw)
 - [x] K8s cluster
-- [ ] Monitoring system (Prometheus & Grafana)
-- [ ] Alert thresholds(min 3 alert)
-- [ ] Redeploy & reconfig(Iac(Ansible) example)
+- [x] Monitoring system (Prometheus & Grafana)
+- [x] Alert thresholds(min 3 alert)
+- [x] Redeploy & reconfig(Iac(Ansible) example)
 - [ ] Certs & expiration dates service
 - [ ] CI/CD
 
@@ -71,5 +66,79 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 ### K8s Arch
 ![k8s-arch](./screenshots/k8s-cluster.png)
 
-### Monitoring & Alert
-![k8s-arch](./screenshots/k8s-monitoring.png)
+### Monitoring, Alert, Time Series Database Tools
+* [Grafana](https://grafana.com/docs/)
+* [Prometheus](https://prometheus.io/docs/introduction/overview/)
+* [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/)
+* [Kwatch](https://github.com/abahmed/kwatch/)
+
+### Top alert definitions for 3 metrics
+* CPU, RAM usage more than 80%
+* Pod, Node crashes for various reasons
+* Out of free space on the disk
+
+### Monitoring & Alert Arch
+![k8s-monitoring](./screenshots/k8s-monitoring.png)
+
+### Prometheus Example Alerts
+![kwatch](./screenshots/grafana.png)
+
+### Grafana Example Dashboard
+![kwatch](./screenshots/prometheus.png)
+
+### Kwatch Example Alert Message
+![kwatch](./screenshots/kwatch.png)
+
+### IaC Example with Ansbile
+* Let's have a sample batch configuration change settings scenario on machines. Let's have 2 machines as in this K8s cluster (of course there may be more).
+* We can group these machines according to our wishes. For example, we can specify group names as all, master and node.
+
+```
+[all]
+master                 ansible_host=192.168.33.71
+node                   ansible_host=192.168.33.72
+
+[master]
+master
+
+[node]
+node
+```
+
+* Then we can do different operations according to the roles in our Ansible playbook.
+
+```yaml
+- hosts: all
+  become: yes
+  roles:
+    - common
+
+- hosts: master
+  become: yes
+  roles:
+    - common
+
+- hosts: node
+  become: yes
+  roles:
+    - common
+```
+
+* We can perform batch operations on the machine blog with the Ansible command I wrote in the example below
+```bash
+PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSIBLE_SSH_ARGS='-o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -o ControlMaster=auto -o ControlPersist=60s' ansible-playbook --connection=ssh --timeout=30 --user="vagrant" --limit="all" --inventory-file=./hosts --ask-pass --become -vvv ansible.yml
+```
+
+* Ansible result
+![ansible](./screenshots/ansible.png)
+
+### K8s Cert Exp Service
+
+### CI/CD
+
+![ci-cd](./screenshots/ci-cd.png)
+
+### Better solutions
+
+* Best Practice Infrastructure Arch 
+![best-practice-infra](./screenshots/best-practice-infra.png)

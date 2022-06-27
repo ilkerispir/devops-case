@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kwatch
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kwatch
+  namespace: kwatch
+data:
+  config.yaml: |
+    alert:
+      slack:
+        webhook: https://hooks.slack.com/services/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
+
+#kubectl apply -f https://raw.githubusercontent.com/abahmed/kwatch/v0.5.0/deploy/deploy.yaml

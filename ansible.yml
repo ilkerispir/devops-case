@@ -2,14 +2,14 @@
 - hosts: all
   become: yes
   roles:
-    - test-all
+    - common
 
 - hosts: master
   become: yes
   roles:
-    - test-master
+    - common
 
 - hosts: node
   become: yes
   roles:
-    - test-node
+    - common
