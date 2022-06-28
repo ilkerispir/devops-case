@@ -57,7 +57,7 @@ curl https://argo-cd.ilkerispir.com/
 - [x] Monitoring system (Prometheus & Grafana)
 - [x] Alert thresholds(min 3 alert)
 - [x] Redeploy & reconfig(Iac(Ansible) example)
-- [ ] Certs & expiration dates service
+- [x] Certs & expiration dates service
 - [ ] CI/CD
 
 ## Architectures
@@ -137,6 +137,18 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 
 ### K8s Cert Exp Service
 ![service-arch](./screenshots/service-arch.png)
+
+### Certificate Management with kubeadm
+```bash
+kubeadm certs check-expiration
+```
+
+### determine SSL cert expiration date from a PEM encoded with openssl
+```bash
+openssl x509 -enddate -noout -in file.pem
+```
+
+
 
 ### CI/CD
 
