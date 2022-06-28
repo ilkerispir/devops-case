@@ -1,0 +1,21 @@
+---
+- name: Add Argo CD chart repo
+  community.kubernetes.helm_repository:
+    name: argo
+    repo_url: https://argoproj.github.io/argo-helm
+
+- name: Render values file
+  template:
+    dest: /tmp/argocd-values.yml
+    src: argocd-values.yml.j2
+
+- name: Install Argo CD
+  community.kubernetes.helm:
+    name: argo
+    chart_ref: argo/argo-cd
+    chart_version: "{{ argocd.chart_version }}"
+    values_files:
+      - /tmp/argocd-values.yml
+    release_namespace: argocd
+    create_namespace: true
+    update_repo_cache: true

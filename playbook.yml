@@ -32,5 +32,6 @@
     - helm
     - ingress-nginx
     - prometheus-grafana
+    - argocd
 
   tasks: []

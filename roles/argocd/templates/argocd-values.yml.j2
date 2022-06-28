@@ -1,0 +1,10 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - argocd.ilkerispir.com
+    tls:
+    - secretName: ilkerispir-cert
+      hosts:
+        - argocd.ilkerispir.com
