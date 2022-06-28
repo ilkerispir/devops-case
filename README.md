@@ -145,7 +145,7 @@ kubeadm certs check-expiration
 
 ### determine SSL cert expiration date from a PEM encoded with openssl
 ```bash
-openssl x509 -enddate -noout -in file.pem
+openssl x509 -enddate -noout -in apiserver.crt
 ```
 
 
