@@ -148,8 +148,6 @@ kubeadm certs check-expiration
 openssl x509 -enddate -noout -in apiserver.crt
 ```
 
-
-
 ### CI/CD
 
 ![ci-cd](./screenshots/ci-cd.png)
