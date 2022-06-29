@@ -1,3 +1,0 @@
----
-- name: Deploy k8s-cert-exp service
-  command: "kubectl create deployment k8s-cert-exp --image ilkerispir/k8s-cert-exp"
