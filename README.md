@@ -63,7 +63,7 @@ curl https://argo-cd.ilkerispir.com/
 ## Architectures
 
 ### K8s Arch
-![k8s-arch](./screenshots/k8s-cluster.png)
+![k8s-arch](./assets/k8s-cluster.png)
 
 ### Monitoring, Alert, Time Series Database Tools
 * [Grafana](https://grafana.com/docs/)
@@ -81,16 +81,16 @@ curl https://argo-cd.ilkerispir.com/
   * Uptime
 
 ### Monitoring & Alert Arch
-![k8s-monitoring](./screenshots/k8s-monitoring.png)
+![k8s-monitoring](./assets/k8s-monitoring.png)
 
 ### Prometheus Example Alerts
-![kwatch](./screenshots/prometheus.png)
+![kwatch](./assets/prometheus.png)
 
 ### Grafana Example Dashboard
-![kwatch](./screenshots/grafana.png)
+![kwatch](./assets/grafana.png)
 
 ### Kwatch Example Alert Message
-![kwatch](./screenshots/kwatch.png)
+![kwatch](./assets/kwatch.png)
 
 ### IaC Example with Ansbile
 * Let's have a sample batch configuration change settings scenario on machines. Let's have 2 machines as in this K8s cluster (of course there may be more).
@@ -133,10 +133,10 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 ```
 
 * Ansible result
-![ansible](./screenshots/ansible.png)
+![ansible](./assets/ansible.png)
 
 ### K8s Cert Exp Service
-![service-arch](./screenshots/service-arch.png)
+![service-arch](./assets/service-arch.png)
 
 ### Certificate Management with kubeadm
 ```bash
@@ -149,16 +149,16 @@ openssl x509 -enddate -noout -in /etc/kubernetes/pki/apiserver.crt
 ```
 
 ### K8s PKI certificates expire Service
-![k8s-certs-exp](./screenshots/k8s-certs-exp.png)
+![k8s-certs-exp](./assets/k8s-certs-exp.png)
 
 ### CI/CD
 
-![ci-cd](./screenshots/ci-cd.png)
+![ci-cd](./assets/ci-cd.png)
 
 ### Better solutions
 
 * Best Practice Infrastructure Arch 
-![best-practice-infra](./screenshots/best-practice-infra.png)
+![best-practice-infra](./assets/best-practice-infra.png)
 
 * Multu Cloud & Region Arch
-![multi-cloud-region](./screenshots/multi-cloud-region.png)
+![multi-cloud-region](./assets/multi-cloud-region.png)
