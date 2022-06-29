@@ -58,7 +58,7 @@ curl https://argo-cd.ilkerispir.com/
 - [x] Alert thresholds(min 3 alert)
 - [x] Redeploy & reconfig(Iac(Ansible) example)
 - [x] Certs & expiration dates service
-- [ ] CI/CD
+- [x] CI/CD
 
 ## Architectures
 
@@ -84,10 +84,10 @@ curl https://argo-cd.ilkerispir.com/
 ![k8s-monitoring](./screenshots/k8s-monitoring.png)
 
 ### Prometheus Example Alerts
-![kwatch](./screenshots/grafana.png)
+![kwatch](./screenshots/prometheus.png)
 
 ### Grafana Example Dashboard
-![kwatch](./screenshots/prometheus.png)
+![kwatch](./screenshots/grafana.png)
 
 ### Kwatch Example Alert Message
 ![kwatch](./screenshots/kwatch.png)
@@ -143,11 +143,12 @@ PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true ANSIBLE_HOST_KEY_CHECKING=false ANSI
 kubeadm certs check-expiration
 ```
 
-### determine SSL cert expiration date from a PEM encoded with openssl
+### Determine SSL cert expiration date from a PEM encoded with openssl
 ```bash
-openssl x509 -enddate -noout -in apiserver.crt
+openssl x509 -enddate -noout -in /etc/kubernetes/pki/apiserver.crt
 ```
 
+### K8s PKI certificates expire Service
 ![k8s-certs-exp](./screenshots/k8s-certs-exp.png)
 
 ### CI/CD
