@@ -1,9 +1,3 @@
 ---
 - name: Deploy k8s-cert-exp service
   command: "kubectl create deployment k8s-cert-exp --image ilkerispir/k8s-cert-exp"
-
-- name: Create argocd namespace
-  command: "kubectl create namespace argocd"
-
-- name: Install Argo CD
-  command: "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml"
