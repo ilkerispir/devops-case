@@ -32,7 +32,7 @@
     - helm
     - ingress-nginx
     - prometheus-grafana
-    - argocd
+    - jenkins
     - k8s-cert-exp
 
   tasks: []

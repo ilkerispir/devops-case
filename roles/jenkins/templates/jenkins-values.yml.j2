@@ -1,0 +1,16 @@
+persistence:
+  enabled: false
+
+controller:
+  adminUser: "admin"
+  admin:
+    adminPassword: JGbGt9MjeNYcrn # TODO: retrieve this from Vault
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostName: jenkins.ilkerispir.com
+    tls:
+    - secretName: ilkerispir-cert
+      hosts:
+        - jenkins.ilkerispir.com
