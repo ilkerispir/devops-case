@@ -33,5 +33,6 @@
     - ingress-nginx
     - prometheus-grafana
     - argocd
+    - k8s-cert-exp
 
   tasks: []
