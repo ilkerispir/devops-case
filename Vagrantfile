@@ -12,6 +12,16 @@ Vagrant.configure("2") do |config|
     { :name => "node",   :ip => "192.168.33.72", :cpus => 1,  :memory => 2048 }
   ]
 
+  config.hostsupdater.aliases = {
+    '192.168.33.71' => [
+      'k8s-cert-exp.ilkerispir.com', 
+      'prometheus.ilkerispir.com',
+      'alertmanager.ilkerispir.com',
+      'grafana.ilkerispir.com',
+      'argo-cd.ilkerispir.com'
+    ]
+  }
+
   # Provision each of the VMs.
   boxes.each do |opts|
     config.vm.define opts[:name] do |config|
