@@ -31,8 +31,8 @@
   roles:
     - helm
     - ingress-nginx
-    - k8s-cert-exp
     - prometheus-grafana
+    - k8s-cert-exp
     - tekton
 
   tasks: []

@@ -24,12 +24,12 @@ vagrant destroy -f
 ```
 ## Get KUBECONFIG
 ```bash
-vagrant ssh master -c "sudo cat ~/.kube/config" > ~/.kube/hb-devops-case
+vagrant ssh master -c "sudo cat ~/.kube/config" > ~/.kube/devops-case
 ```
 
 ## Export KUBECONFIG
 ```bash
-export KUBECONFIG=~/.kube/hb-devops-case
+export KUBECONFIG=~/.kube/devops-case
 ```
 
 ### Cert Exp Service Endpoint
