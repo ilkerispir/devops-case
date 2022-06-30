@@ -30,6 +30,7 @@
   become: yes
   roles:
     - helm
+    - tekton
     - ingress-nginx
     - prometheus-grafana
     - jenkins

@@ -16,11 +16,11 @@
     chart_version: "{{ ingress_nginx.chart_version }}"
     values_files:
       - /tmp/nginx-ingress-values.yml
-    release_namespace: platform
+    release_namespace: ingress-nginx
     create_namespace: true
     update_repo_cache: true
 
 - name: Wait until nginx-ingress is deployed
   shell:
     cmd: |
-      kubectl rollout status daemonset -n platform nginx-ingress-nginx-controller
+      kubectl rollout status daemonset -n ingress-nginx nginx-ingress-nginx-controller

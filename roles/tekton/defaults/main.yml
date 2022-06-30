@@ -1,0 +1,3 @@
+---
+tekton:
+  chart_version: "0.29.0"

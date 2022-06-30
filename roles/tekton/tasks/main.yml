@@ -1,0 +1,21 @@
+---
+- name: Add Tekton chart repo
+  community.kubernetes.helm_repository:
+    name: cdf
+    repo_url: https://cdfoundation.github.io/tekton-helm-chart/
+
+- name: Render values file
+  template:
+    dest: /tmp/tekton-values.yml
+    src: tekton-values.yml.j2
+
+- name: Install Tekton
+  community.kubernetes.helm:
+    name: tekton
+    chart_ref: cdf/tekton-pipeline
+    chart_version: "{{ tekton.chart_version }}"
+    values_files:
+      - /tmp/tekton-values.yml
+    release_namespace: tekton-pipelines
+    create_namespace: true
+    update_repo_cache: true
