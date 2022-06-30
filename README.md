@@ -156,13 +156,13 @@ openssl x509 -enddate -noout -in /etc/kubernetes/pki/apiserver.crt
 
 ![tekton](./assets/tekton.png)
 
-### Better solutions
+## Better solutions
 
-* Best Practice Infrastructure Arch 
+### Best Practice Infrastructure Arch 
 ![best-practice-infra](./assets/best-practice-infra.png)
 
-* Multu Cloud & Region Arch
+### Multu Cloud & Region Arch
 ![multi-cloud-region](./assets/multi-cloud-region.png)
 
-* CI/CD Pipeline
+### CI/CD Pipeline
 ![ci-cd](./assets/ci-cd.png)
