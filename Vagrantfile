@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
       'prometheus.ilkerispir.com',
       'alertmanager.ilkerispir.com',
       'grafana.ilkerispir.com',
-      'jenkins.ilkerispir.com'
+      'tekton.ilkerispir.com'
     ]
   }
 

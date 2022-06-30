@@ -1,25 +1,14 @@
 ---
-- name: Add Tekton chart repo
-  community.kubernetes.helm_repository:
-    name: cdf
-    repo_url: https://cdfoundation.github.io/tekton-helm-chart/
+- name: Deploy Tekton
+  command: "kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml"
 
-- name: Render values file
+- name: Deploy Tekton Dasboard
+  command: "kubectl apply -f https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml"
+
+- name: Render k8s-cert-exp ingress yml file
   template:
-    dest: /tmp/tekton-values.yml
-    src: tekton-values.yml.j2
+    dest: /tmp/tekton-ingress.yml
+    src: tekton-ingress.yml.j2
 
-- name: Install Tekton
-  community.kubernetes.helm:
-    name: tekton
-    chart_ref: cdf/tekton-pipeline
-    chart_version: "{{ tekton.chart_version }}"
-    values_files:
-      - /tmp/tekton-values.yml
-    release_namespace: tekton-pipelines
-    create_namespace: true
-    update_repo_cache: true
-
-# kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
-
-# kubectl apply -f https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+- name: Deploy Tekton ingress
+  command: "kubectl apply -f /tmp/tekton-ingress.yml"

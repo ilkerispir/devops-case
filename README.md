@@ -47,9 +47,9 @@ curl https://grafana.ilkerispir.com/
 curl https://prometheus.ilkerispir.com/
 ```
 
-### Argo CD
+### Tekton
 ```bash
-curl https://argo-cd.ilkerispir.com/
+curl https://tekton.ilkerispir.com/
 ```
 
 ## ToDo List
@@ -152,9 +152,9 @@ openssl x509 -enddate -noout -in /etc/kubernetes/pki/apiserver.crt
 ### K8s PKI certificates expire Service
 ![k8s-certs-exp](./assets/k8s-certs-exp.png)
 
-### CI/CD
+### Tekton Dashboard
 
-![ci-cd](./assets/ci-cd.png)
+![tekton](./assets/tekton.png)
 
 ### Better solutions
 
@@ -163,3 +163,6 @@ openssl x509 -enddate -noout -in /etc/kubernetes/pki/apiserver.crt
 
 * Multu Cloud & Region Arch
 ![multi-cloud-region](./assets/multi-cloud-region.png)
+
+* CI/CD Pipeline
+![ci-cd](./assets/ci-cd.png)

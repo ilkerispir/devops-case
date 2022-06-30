@@ -2,16 +2,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: tekton-ingress
+  name: tekton-dashboard
+  namespace: tekton-pipelines
 spec:
   ingressClassName: nginx
-  tls:
   rules:
   - host: tekton.ilkerispir.com
     http:
       paths:
-      - path: /
-        pathType: Exact
+      - pathType: ImplementationSpecific
         backend:
           service:
             name: tekton-dashboard
