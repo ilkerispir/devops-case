@@ -3,7 +3,7 @@
 ## Requirements
 
 * [Vagrant](https://www.vagrantup.com/downloads)
- * vagrant plugin install vagrant-hostsupdater
+* [vagrant plugin install vagrant-hostsupdater](https://github.com/agiledivider/vagrant-hostsupdater)
 * [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 * [Virtualbox(If your processor is x86-64 or AMD based.)](https://www.virtualbox.org/wiki/Downloads)
 * [Parallels(If your processor is ARM based. For example, if you have a computer with the Apple M1 series)](https://www.parallels.com/eu/products/desktop/trial/)
