@@ -1,0 +1,10 @@
+- name: Render kwatch config yml file
+  template:
+    dest: /tmp/kwatch-config.yml
+    src: kwatch-config.yml.j2
+
+- name: Deploy k8s-cert-exp service
+  command: "kubectl apply -f /tmp/kwatch-config.yml"
+
+- name: Deploy k8s-cert-exp ingress
+  command: "kubectl apply -f https://raw.githubusercontent.com/abahmed/kwatch/v0.5.0/deploy/deploy.yaml"

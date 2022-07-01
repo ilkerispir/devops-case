@@ -32,6 +32,7 @@
     - helm
     - ingress-nginx
     - prometheus-grafana
+    - kwatch
     - k8s-cert-exp
     - tekton
 
